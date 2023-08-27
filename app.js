@@ -55,12 +55,12 @@ app.get("/", (req, res) => {
 // Controllers imports
 const productController = require("./controllers/productController.js");
 const reviewsController = require("./controllers/reviewsController.js");
-const usersController = require("./controllers/usersController.js");  // Imported users controller
+// const usersController = require("./controllers/usersController.js");  // Imported users controller
 
 // Setup routes
 app.use("/products", productController);
 app.use("/products/:productId/reviews", reviewsController);
-app.use("/users", usersController);  // Route for users
+// app.use("/users", usersController);  // Route for users
 
 // 404 PAGE
 app.get("*", (req, res) => {
@@ -69,3 +69,4 @@ app.get("*", (req, res) => {
 
 // EXPORT
 module.exports = app;
+

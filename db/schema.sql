@@ -57,10 +57,8 @@
 --     review_date DATE DEFAULT CURRENT_DATE
 -- );
 
-DROP TABLE IF EXISTS reviews;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS products_dev;
 
+DROP DATABASE IF EXISTS products_dev;
 CREATE DATABASE products_dev;
 
 \c products_dev
@@ -74,22 +72,27 @@ CREATE TABLE products (
     stock_quantity INTEGER NOT NULL
 );
 
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL, -- This should store hashed passwords, never plain-text
-    email VARCHAR(255) UNIQUE NOT NULL,
-    full_name VARCHAR(255),
-    address TEXT,
-    joined_date DATE DEFAULT CURRENT_DATE
-);
 
+-- DROP TABLE IF EXISTS users;
+-- CREATE TABLE users (
+--     id SERIAL PRIMARY KEY,
+--     username VARCHAR(255) UNIQUE NOT NULL,
+--     password VARCHAR(255) NOT NULL, -- This should store hashed passwords, never plain-text
+--     email VARCHAR(255) UNIQUE NOT NULL,
+--     full_name VARCHAR(255),
+--     address TEXT,
+--     joined_date DATE DEFAULT CURRENT_DATE
+-- );
+
+DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
     product_id INTEGER REFERENCES products(id),
-    user_id INTEGER REFERENCES users(id),
     rating INTEGER CHECK (rating >= 1 AND rating <= 5),
     comment TEXT,
     review_date DATE DEFAULT CURRENT_DATE
 );
 
+
+
+ -- user_id INTEGER REFERENCES users(id),

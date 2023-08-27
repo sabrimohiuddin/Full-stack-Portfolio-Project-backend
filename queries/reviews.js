@@ -23,21 +23,20 @@ const getReview = async (id) => {
 
 const newReview = async (review) => {
     try {
-        const newReview = await db.one(
-            "INSERT INTO reviews (reviewer, title, content, rating, product_id) VALUES($1, $2, $3, $4, $5) RETURNING *",
-            [
-                review.reviewer,
-                review.title,
-                review.content,
-                review.rating,
-                review.product_id
-            ]
-        )
-        return newReview;
+      const newReview = await db.one(
+        "INSERT INTO reviews (rating, comment, product_id) VALUES($1, $2, $3) RETURNING *",
+        [
+          review.rating,
+          review.comment,
+          review.product_id
+        ]
+      );
+      return newReview;
     } catch (error) {
-        return error;
+      return error;
     }
-}
+  };
+  
 
 const deleteReview = async (id) => {
     try {

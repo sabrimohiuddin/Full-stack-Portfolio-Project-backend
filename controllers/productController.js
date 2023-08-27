@@ -68,3 +68,5 @@ products.put("/:id", checkName, checkPrice, validateImageURL, async (req, res) =
 module.exports = products;
 
 
+
+

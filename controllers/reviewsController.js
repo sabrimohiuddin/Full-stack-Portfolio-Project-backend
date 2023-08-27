@@ -10,15 +10,27 @@ const {
 } = require("../queries/reviews");
 
 // INDEX
+// reviews.get("/", async (req, res) => {
+//   const { productId } = req.params;
+//   try {
+//     const allReviews = await getAllReviews(productId);
+//     res.json(allReviews);
+//   } catch (err) {
+//     res.json(err);
+//   }
+// });
+
+
 reviews.get("/", async (req, res) => {
   const { productId } = req.params;
   try {
     const allReviews = await getAllReviews(productId);
     res.json(allReviews);
   } catch (err) {
-    res.json(err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // SHOW
 reviews.get("/:id", async (req, res) => {
@@ -68,3 +80,5 @@ reviews.delete("/:id", async (req, res) => {
 //     "rating": "5"
 // }
 module.exports = reviews;
+
+
