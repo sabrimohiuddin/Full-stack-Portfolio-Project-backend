@@ -1,5 +1,5 @@
 const checkName = (req, res, next) => {
-    if (req.body.product_name) {
+    if (req.body.name) {
       next();
     } else {
       res.status(400).json({ error: "Product name is required" });

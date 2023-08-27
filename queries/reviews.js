@@ -51,23 +51,33 @@ const deleteReview = async (id) => {
 }
 
 const updateReview = async (id, review) => {
+    // Debugging logs
+    console.log("Updating Review with ID:", id);
+    console.log("New Review Data:", review);
+    
     try {
         const updatedReview = await db.one(
-            "UPDATE reviews SET reviewer=$1, title=$2, content=$3, rating=$4, product_id=$5 WHERE id=$6 RETURNING *",
+            "UPDATE reviews SET rating=$1, comment=$2, product_id=$3 WHERE id=$4 RETURNING *",
             [
-                review.reviewer,
-                review.title,
-                review.content,
                 review.rating,
+                review.comment,
                 review.product_id,
                 id
             ]
-        )
+        );
+        
+        // Debugging log for successful update
+        console.log("Update successful:", updatedReview);
+        
         return updatedReview;
     } catch (error) {
+        // Debugging log for failed update
+        console.error("Update failed with error:", error);
+        
         return error;
     }
 }
+
 
 module.exports = {
     getAllReviews,
@@ -76,3 +86,4 @@ module.exports = {
     deleteReview,
     updateReview,
 }
+

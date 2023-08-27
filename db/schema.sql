@@ -72,18 +72,6 @@ CREATE TABLE products (
     stock_quantity INTEGER NOT NULL
 );
 
-
--- DROP TABLE IF EXISTS users;
--- CREATE TABLE users (
---     id SERIAL PRIMARY KEY,
---     username VARCHAR(255) UNIQUE NOT NULL,
---     password VARCHAR(255) NOT NULL, -- This should store hashed passwords, never plain-text
---     email VARCHAR(255) UNIQUE NOT NULL,
---     full_name VARCHAR(255),
---     address TEXT,
---     joined_date DATE DEFAULT CURRENT_DATE
--- );
-
 DROP TABLE IF EXISTS reviews;
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
@@ -96,3 +84,15 @@ CREATE TABLE reviews (
 
 
  -- user_id INTEGER REFERENCES users(id),
+
+
+ -- DROP TABLE IF EXISTS users;
+-- CREATE TABLE users (
+--     id SERIAL PRIMARY KEY,
+--     username VARCHAR(255) UNIQUE NOT NULL,
+--     password VARCHAR(255) NOT NULL, -- This should store hashed passwords, never plain-text
+--     email VARCHAR(255) UNIQUE NOT NULL,
+--     full_name VARCHAR(255),
+--     address TEXT,
+--     joined_date DATE DEFAULT CURRENT_DATE
+-- );

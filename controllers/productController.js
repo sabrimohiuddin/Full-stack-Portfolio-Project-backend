@@ -60,10 +60,22 @@ products.delete("/:id", async (req, res) => {
 
 // UPDATE
 products.put("/:id", checkName, checkPrice, validateImageURL, async (req, res) => { 
-  const { id } = req.params;
-  const updatedProduct = await updateProduct(id, req.body); 
-  res.status(200).json(updatedProduct);
+  try {
+    const { id } = req.params;
+    const updatedProduct = await updateProduct(id, req.body); 
+
+    if (!updatedProduct) {
+      res.status(404).json({ error: 'Product not found or could not be updated' });
+      return;
+    }
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error('Error during product update:', error);
+    res.status(400).json({ error: 'Bad request', details: error.message });
+  }
 });
+
 
 module.exports = products;
 
